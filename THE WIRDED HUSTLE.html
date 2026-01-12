@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Wired Hustle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="The Wired Hustle - Design. Hustle. Dominate." />
+  <meta property="og:description" content="We create modern websites, logos, and digital designs that help brands stand out and win online. Innovative web design and creative solutions at your service 24/7." />
+  <meta property="og:image" content="https://yourdomain.com/preview-image.jpg" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Wired Hustle - Design. Hustle. Dominate." />
+  <meta name="twitter:description" content="We create modern websites, logos, and digital designs that help brands stand out and win online. Innovative web design and creative solutions at your service 24/7." />
+  <meta name="twitter:image" content="https://yourdomain.com/preview-image.jpg" />
+
+  <!-- Google Analytics (for click tracking) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  <style>
+    :root{
+      --bg:#0b1226;
+      --bg-2:#0f1733;
+      --primary:#3bb3ff;
+      --primary-2:#7fd3ff;
+      --accent:#9aa8ff;
+      --text:#eaf2ff;
+      --muted:#a7b3cc;
+      --card:#111a3a;
+      --glass: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 20px 40px rgba(25, 75, 150, 0.25);
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 80% -100px, #18336b 0%, transparent 60%),
+        radial-gradient(900px 500px at -20% 20%, #132753 0%, transparent 60%),
+        linear-gradient(160deg, #0a1022 0%, #0b1226 100%);
+      color:var(--text);
+      font-family:"Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px, 92vw); margin:0 auto}
+
+    /* NAV */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(1.1) blur(10px);
+      background:linear-gradient(180deg, rgba(10,16,34,0.7), rgba(10,16,34,0.35));
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:0.4px;
+    }
+    .brand-logo{
+      width:38px; height:38px; border-radius:12px;
+      background:conic-gradient(from 180deg, #3bb3ff, #9aa8ff, #7fd3ff, #3bb3ff);
+      box-shadow: 0 10px 24px rgba(59,179,255,0.35);
+      position:relative;
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:26px;
+      font-weight:600; color:var(--muted);
+    }
+    .nav-links a{padding:10px 6px; border-radius:8px}
+    .nav-links a:hover{color:var(--text); background-color:var(--glass)}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(180deg, #3bb3ff, #2a8ed6);
+      color:#05152a; font-weight:800;
+      padding:10px 16px; border-radius:12px; box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .cta:hover{filter:brightness(1.05)}
+
+    /* HERO */
+    .hero{
+      display:grid; grid-template-columns: 1.2fr 1fr; gap:40px;
+      align-items:center; padding:60px 0 40px;
+    }
+    @media (max-width:980px){ .hero{grid-template-columns:1fr; padding:36px 0} }
+    .tagline{
+      font-size:clamp(34px, 5.2vw, 64px);
+      font-weight:800; line-height:1.05;
+      background:linear-gradient(180deg, #fff, #b7d9ff);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      margin:0 0 16px;
+    }
+    .subtitle{
+      color:var(--muted); font-size:clamp(16px, 2.4vw, 18px); line-height:1.6;
+      max-width:720px;
+    }
+    .hero-figure{
+      position:relative; min-height:360px; border-radius:22px;
+      background:linear-gradient(180deg, rgba(59,179,255,0.12), rgba(154,168,255,0.08));
+      border:1px solid var(--border); box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    /* Futuristic cityscape SVG styling */
+    .city-wrap{position:absolute; inset:0; display:grid; place-items:center}
+    .glow{
+      position:absolute; inset:auto; bottom:-60px; left:50%; transform:translateX(-50%);
+      width:120%; height:160px; filter:blur(60px);
+      background:radial-gradient(280px 140px at 50% 0%, rgba(59,179,255,0.35), transparent 70%);
+      pointer-events:none;
+    }
+
+    /* SERVICES CAROUSEL */
+    .section-title{
+      margin:40px 0 18px; font-weight:800; letter-spacing:1.2px;
+      color:#bcd6ff
+    }
+    .carousel{
+      position:relative; overflow:hidden; border-radius:18px;
+      border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    }
+    .track{
+      display:flex; gap:16px; padding:18px;
+      transform:translateX(0); transition:transform 400ms cubic-bezier(.2,.7,.2,1);
+    }
+    .card{
+      min-width:260px; flex:0 0 260px;
+      background:linear-gradient(180deg, #121b3e, #0f1733);
+      border:1px solid var(--border); border-radius:16px; padding:18px;
+      box-shadow: 0 8px 25px rgba(10, 20, 60, 0.35);
+    }
+    .card h4{margin:0 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted)}
+    .card img{
+      width:100%; height:140px; object-fit:cover; border-radius:12px; margin-bottom:12px;
+    }
+    .carousel-controls{
+      position:absolute; inset:auto 18px 18px auto; display:flex; gap:10px;
+    }
+    .btn{
+      background:rgba(255,255,255,0.08); border:1px solid var(--border);
+      color:var(--text); padding:8px 10px; border-radius:10px; cursor:pointer;
+    }
+    .btn:hover{background:rgba(255,255,255,0.14)}
+
+    /* THREE CHARACTERS */
+    .triptych{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin:38px 0;
+    }
+    @media (max-width:980px){ .triptych{grid-template-columns:1fr; } }
+    .panel{
+      background:linear-gradient(180deg, #121b3e, #10183a);
+      border:1px solid var(--border); border-radius:18px; padding:20px;
+      box-shadow: var(--shadow);
+      display:grid; grid-template-columns: 80px 1fr; gap:16px; align-items:center;
+    }
+    .avatar{
+      width:80px; height:80px; border-radius:16px; position:relative; overflow:hidden;
+      background:linear-gradient(135deg, #3bb3ff, #9aa8ff);
+      box-shadow: 0 15px 30px rgba(59,179,255,0.35);
+    }
+    .avatar:after{
+      content:""; position:absolute; inset:6px; border-radius:12px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+      mix-blend-mode:overlay;
+    }
+    .panel h5{margin:0 0 8px; font-size:18px}
+    .panel p{margin:0; color:var(--muted)}
+
+    /* BOTTOM GRID */
+    .bottom{
+      display:grid; grid-template-columns: 1.1fr 0.9fr; gap:22px; margin:10px 0 60px;
+    }
+    @media (max-width:980px){ .bottom{grid-template-columns:1fr} }
+    .info, .contact{
+      background:linear-gradient(180deg, #121b3e, #0f1733);
+      border:1px solid var(--border); border-radius:18px; padding:22px; box-shadow: var(--shadow);
+    }
+    .info h4, .contact h4{margin:0 0 10px}
+    .info p{color:var(--muted); margin:0}
+    .form-row{display:flex; gap:10px}
+    .input, textarea{
+      width:100%; margin:10px 0; padding:12px 14px;
+      border-radius:12px; border:1px solid var(--border);
+      background-color:rgba(255,255,255,0.06); color:var(--text);
+      outline:none;
+    }
+    .input::placeholder, textarea::placeholder{color:#a6b1c9}
+    textarea{min-height:120px; resize:vertical}
+    .send{
+      background:linear-gradient(180deg, #3bb3ff, #2a8ed6);
+      color:#05152a; font-weight:800; padding:10px 16px; border-radius:12px; border:0;
+      box-shadow: var(--shadow); cursor:pointer;
+    }
+    .send:hover{filter:brightness(1.05)}
+
+    /* SOCIALS */
+    .socials{
+      display:flex; gap:12px; margin-top:14px;
+    }
+    .social{
+      width:40px; height:40px; display:grid; place-items:center; border-radius:10px;
+      background-color:rgba(255,255,255,0.06); border:1px solid var(--border);
+    }
+    .social svg{width:20px; height:20px; fill:#cfe6ff}
+
+    /* FOOTER SPACING */
+    footer{height:30px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <span>The Wired Hustle</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="cta" href="#get-started">Get started</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <h1 class="tagline">Design. Hustle. Dominate.</h1>
+        <p class="subtitle">
+          We create modern websites, logos, and digital designs that help brands stand out and win online. Innovative web design and creative solutions at your service 24/7.
+        </p>
+      </div>
+      <figure class="hero-figure" aria-label="Futuristic cityscape illustration">
+        <div class="city-wrap">
+          <!-- Minimal futuristic cityscape SVG -->
+          <svg width="520" height="280" viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bldg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7fd3ff"/>
+                <stop offset="100%" stop-color="#3bb3ff"/>
+              </linearGradient>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1b2d5f"/>
+                <stop offset="100%" stop-color="#0f1733"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="520" height="280" rx="18" fill="url(#sky)" />
+            <!-- Clouds -->
+            <ellipse cx="110" cy="70" rx="60" ry="22" fill="rgba(255,255,255,0.18)"/>
+            <ellipse cx="170" cy="78" rx="50" ry="18" fill="rgba(255,255,255,0.14)"/>
+            <ellipse cx="380" cy="68" rx="65" ry="24" fill="rgba(255,255,255,0.18)"/>
+            <!-- Buildings -->
+            <g transform="translate(50,110)">
+              <rect x="0" y="20" width="60" height="120" fill="url(#bldg)" opacity="0.9" rx="6"/>
+              <rect x="80" y="0" width="70" height="140" fill="#9aa8ff" opacity="0.9" rx="6"/>
+              <rect x="170" y="35" width="56" height="105" fill="#7fd3ff" opacity="0.9" rx="6"/>
+              <rect x="240" y="10" width="64" height="130" fill="#3bb3ff" opacity="0.9" rx="6"/>
+              <rect x="320" y="50" width="48" height="90" fill="#9aa8ff" opacity="0.9" rx="6"/>
+            </g>
+            <!-- Accents -->
+            <circle cx="420" cy="38" r="6" fill="#7fd3ff"/>
+            <circle cx="428" cy="38" r="3" fill="#3bb3ff"/>
+          </svg>
+        </div>
+        <div class="glow"></div>
+      </figure>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h3 class="section-title">OUR SERVICES</h3>
+      <div class="carousel" aria-label="Service cards carousel">
+        <div class="track" id="track">
+          <article class="card">
+            <img src="https://via.placeholder.com/260x140/3bb3ff/ffffff?text=Web+Design" alt="Web Design Service">
+            <h4>Web Design</h4>
+            <p>Modern, responsive websites built for speed and conversions.</p>
+          </article>
+          <article class="card">
+            <img src="https://via.placeholder.com/260x140/9aa8ff/ffffff?text=Logo+Design" alt="Logo Design Service">
+            <h4>Logo Design</h4>
+            <p>Unique brand identities that stay memorable.</p>
+          </article>
+          <article class="card">
+            <img src="https://via.placeholder.com/260x140/7fd3ff/ffffff?text=Poster+Design" alt="Poster Design Service">
+            <h4>Poster Design</h4>
+            <p>Eye-catching visuals for marketing and promotions.</p>
+          </article>
+          <article class="card">
+            <img src="https://via.placeholder.com/260x140/3bb3ff/ffffff?text=Branding" alt="Branding Service">
+            <h4>Branding</h4>
+            <p>Complete brand systems for serious businesses.</p>
+          </article>
+          <article class="card">
+            <img src="https://via.placeholder.com/260x140/9aa8ff/ffffff?text=Digital+Marketing" alt="Digital Marketing Service">
+            <h4>Digital Marketing</h4>
+            <p>Strategies to boost your online presence.</p>
+          </article>
+        </div>
+        <div class="carousel-controls">
+          <button class="btn" id="prev" aria-label="Previous">◀</button>
+          <button class="btn" id="next" aria-label="Next">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREE CHARACTERS -->
+    <section id="about">
+      <div class="triptych">
+        <div class="panel">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h5>Creative Vision</h5>
+            <p>Our team brings innovative ideas to life with cutting-edge design techniques.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h5>Expert Craftsmanship</h5>
+            <p>Years of experience in web design, branding, and digital solutions.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h5>Client Satisfaction</h5>
+            <p>We prioritize your needs and deliver results that exceed expectations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM GRID -->
+    <section class="bottom" id="contact">
+      <div class="info">
+        <h4>Why Choose The Wired Hustle?</h4>
+        <p>
+          We are a web design and creative agency ready at your service 24/7. Our mission is to provide top-notch design solutions that help businesses and individuals stand out in the digital world.
+        </p>
+      </div>
+      <div class="contact">
+        <h4>Contact Form</h4>
+        <p style="color:var(--muted); margin:0 0 10px;">
+          Ready to start your project? Get in touch today!
+        </p>
+        <form>
+          <div class="form-row">
+            <input class="input" type="text" placeholder="Name" aria-label="Name" />
+            <input class="input" type="email" placeholder="Email" aria-label="Email" />
+          </div>
+          <textarea placeholder="Tell us about your project" aria-label="Message"></textarea>
+          <button class="send" type="submit">Send message</button>
+        </form>
+        <div class="socials" aria-label="Social media">
+          <a class="social" href="https://www.facebook.com/profile.php?id=61585702343322" target="_blank"
+             onclick="gtag('event', 'click', { 'event_category': 'Social', 'event_label': 'Facebook' });"
+             aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M22 12.07C22 6.49 17.52 2 12 2S2 6.49 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.02H8.1v-2.91h2.34V9.41c0-2.31 1.37-3.59 3.47-3.59.99 0 2.04.18 2.04.18v2.25h-1.15c-1.13 0-1.48.7-1.48 1.41v1.69h2.52l-.4 2.91h-2.12v7.02C18.34 21.25 22 17.09 22 12.07z"/></svg>
+          </a>
+          <a class="social" href="https://www.linkedin.com/in/johnson-malisa-1410nba/" target="_blank"
+             onclick="gtag('event', 'click', { 'event_category': 'Social', 'event_label': 'LinkedIn' });"
+             aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.54v-5.31c0-1.27-.02-2.91-1.77-2.91-1.77 0-2.04 1.38-2.04 2.81v5.41H9.56V9.56h3.4v1.48h.05c.47-.89 1.61-1.82 3.31-1.82 3.54 0 4.19 2.33 4.19 5.37v5.86zM5.75 8.08a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.52 20.45H3.98V9.56h3.54v10.89z"/></svg>
+          </a>
+          <a class="social" href="https://www.instagram.com/thewired_hustle/" target="_blank"
+             onclick="gtag('event', 'click', { 'event_category': 'Social', 'event_label': 'Instagram' });"
+             aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.73A3.03 3.03 0 1 1 12 8.97a3.03 3.03 0 0 1 0 6.06zm5.97-7.87a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2zM12 2.5c3.23 0 3.61.01 4.88.07 1.26.06 2.12.26 2.87.55.78.3 1.44.7 2.08 1.34.64.64 1.04 1.3 1.34 2.08.29.75.49 1.61.55 2.87.06 1.27.07 1.65.07 4.88s-.01 3.61-.07 4.88c-.06 1.26-.26 2.12-.55 2.87-.3.78-.7 1.44-1.34 2.08-.64.64-1.04 1.3-1.34 2.08-.29.75-.49 1.61-.55 2.87C15.61 21.49 15.23 21.5 12 21.5s-3.61-.01-4.88-.07c-1.26-.06-2.12-.26-2.87-.55-.78-.3-1.44-.7-2.08-1.34-.64-.64-1.04-1.3-1.34-2.08-.29-.75-.49-1.61-.55-2.87C4.39 15.61 4.77 15.5 8 15.5s3.61.01 4.88.07c1.26.06 2.12.26 2.87.55.78.3 1.44.7 2.08 1.34.64.64 1.04 1.3 1.34 2.08.29.75.49 1.61.55 2.87.06 1.27.07 1.65.07 4.88s-.01 3.61-.07 4.88c-.06 1.26-.26 2.12-.55 2.87-.3.78-.7 1.44-1.34 2.08-.64.64-1.04-1.3-1.34-2.08-.29-.75-.49-1.61-.55-2.87C8.39 2.51 8.77 2.5 12 2.5z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    // Simple carousel movement
+    (function(){
+      const track = document.getElementById('track');
+      const next = document.getElementById('next');
+      const prev = document.getElementById('prev');
+      const carousel = document.querySelector('.carousel');
+      let index = 0;
+      const step = 276; // card width + gap
+      let autoScroll;
+
+      function update(){
+        track.style.transform = `translateX(${-index * step}px)`;
+      }
+      next.addEventListener('click', ()=>{
+        const maxIndex = Math.max(0, track.children.length - Math.floor(track.parentElement.offsetWidth / step));
+        index = Math.min(index + 1, maxIndex);
+        update();
+      });
+      prev.addEventListener('click', ()=>{
+        index = Math.max(index - 1, 0);
+        update();
+      });
+
+      // Mouse wheel scrolling
+      carousel.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (e.deltaY > 0) {
+          next.click();
+        } else {
+          prev.click();
+        }
+      });
+
+      // Auto-scroll on hover
+      carousel.addEventListener('mouseenter', () => {
+        autoScroll = setInterval(() => {
+          next.click();
+        }, 2000); // Auto-scroll every 2 seconds
+      });
+      carousel.addEventListener('mouseleave', () => {
+        clearInterval(autoScroll);
+      });
+
+      // Responsive recalculation
+      window.addEventListener('resize', update);
+    })();
+  </script>
+</body>
+</html>
