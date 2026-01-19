@@ -10,28 +10,42 @@ exports.saveContact = async (req, res) => {
         await newContact.save();
 
         // Email Notification
-        const transporter = nodemailer.createTransport({
-            service: process.env.EMAIL_SERVICE || 'gmail',
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
+        let transporter;
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+            transporter = nodemailer.createTransport({
+                service: process.env.EMAIL_SERVICE || 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS
+                }
+            });
+        } else {
+            // Fallback for development/demo: Create a test account on Ethereal
+            console.warn('Real email credentials not set. Creating a mock test account.');
+            const testAccount = await nodemailer.createTestAccount();
+            transporter = nodemailer.createTransport({
+                host: 'smtp.ethereal.email',
+                port: 587,
+                secure: false,
+                auth: {
+                    user: testAccount.user,
+                    pass: testAccount.pass
+                }
+            });
+        }
 
         const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_RECEIVER || process.env.EMAIL_USER,
+            from: process.env.EMAIL_USER || 'demo@wiredhustle.com',
+            to: process.env.EMAIL_RECEIVER || process.env.EMAIL_USER || 'admin@wiredhustle.com',
             subject: `New Contact Message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         };
 
-        // Note: In a production environment, you might want to handle email async
-        // or using a queue to avoid blocking the response.
-        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-            await transporter.sendMail(mailOptions);
-            console.log('Email sent successfully');
+        const info = await transporter.sendMail(mailOptions);
+        if (transporter.options.host === 'smtp.ethereal.email') {
+            console.log('Mock Email Preview URL: %s', nodemailer.getTestMessageUrl(info));
         } else {
-            console.warn('Email credentials not set. Skipping email notification.');
+            console.log('Real Email sent successfully');
         }
 
         res.status(201).json({ message: 'Contact message saved successfully' });
