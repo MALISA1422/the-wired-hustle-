@@ -3,9 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const projectRoutes = require('./routes/projectRoutes');
+const productRoutes = require('./routes/productRoutes');
 const contactRoutes = require('./routes/contactRoutes');
-const Project = require('./models/Project');
+const Product = require('./models/Product');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,95 +24,77 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => console.error('Could not connect to MongoDB', err));
 
 // API Routes
-app.use('/api/projects', projectRoutes);
+app.use('/api/products', productRoutes);
 app.use('/api/contact', contactRoutes);
 
 // Catch-all route for frontend
-app.get('*', (req, res) => {
+app.get('*any', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Seed Data
 async function seedDatabase() {
     try {
-        const count = await Project.countDocuments();
+        const count = await Product.countDocuments();
         if (count === 0) {
             const seedData = [
                 {
-                    id: 'fintech',
-                    category: 'Latest Work',
-                    title: 'Fintech App Redesign',
-                    description: 'A complete overhaul of a mobile banking application focusing on accessibility and financial clarity.',
-                    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Simplified transaction history view', 'Dark mode support', 'Biometric authentication flow', 'Spending analysis charts'],
+                    id: 'royal-velvet-suit',
+                    category: 'Exquisite Suits',
+                    title: 'Royal Velvet Suit',
+                    description: 'Handcrafted with premium velvet, this suit embodies the elegance of Kings Willy Fashion.',
+                    image: 'https://images.unsplash.com/photo-1594932224828-b4b059b6f6ee?auto=format&fit=crop&q=80&w=1000',
+                    highlights: ['100% Premium Velvet', 'Silk inner lining', 'Tailored fit', 'Available in Royal Blue and Emerald'],
                     isFeatured: true
                 },
                 {
-                    id: 'ecommerce',
-                    category: 'Case Study',
-                    title: 'E-Commerce Dashboard',
-                    description: 'An internal tool for shop administrators to manage inventory, track sales in real-time, and process orders.',
-                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Real-time sales graph', 'Drag-and-drop inventory management', 'Multi-user permission system', 'Automated reporting'],
+                    id: 'golden-silk-scarf',
+                    category: 'Accessories',
+                    title: 'Golden Silk Scarf',
+                    description: 'A luxurious silk scarf with intricate golden patterns, perfect for adding a touch of royalty to any outfit.',
+                    image: 'https://images.unsplash.com/photo-1584917469896-33d0adee63e0?auto=format&fit=crop&q=80&w=1000',
+                    highlights: ['Pure Mulberry Silk', 'Hand-rolled edges', '24k gold leaf patterns', 'Limited edition'],
                     isFeatured: true
                 },
                 {
-                    id: 'designsystem',
-                    category: 'Process',
-                    title: 'Enterprise Design System',
-                    description: 'A comprehensive design language created to unify products across multiple platforms.',
-                    image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['50+ reusable components', 'Dark/Light theme tokens', 'Accessibility (WCAG 2.1) compliant', 'Figma plugin for designers'],
+                    id: 'imperial-leather-boots',
+                    category: 'Footwear',
+                    title: 'Imperial Leather Boots',
+                    description: 'Durable and stylish boots made from the finest Italian leather.',
+                    image: 'https://images.unsplash.com/photo-1638247025967-b4e38f787b76?auto=format&fit=crop&q=80&w=1000',
+                    highlights: ['Italian Calfskin Leather', 'Goodyear welted sole', 'Hand-burnished finish', 'Extreme comfort'],
                     isFeatured: true
                 },
                 {
-                    id: 'ai',
-                    category: 'SaaS Product',
-                    title: 'AI Analytics Dashboard',
-                    description: 'Visualizing predictive models for big data companies.',
-                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Interactive scatter plots', 'Model training timeline', 'GPU usage monitoring', 'Export to Jupyter Notebooks'],
+                    id: 'majestic-evening-gown',
+                    category: 'Gowns',
+                    title: 'Majestic Evening Gown',
+                    description: 'A breathtaking gown designed for the most prestigious occasions.',
+                    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=80&w=1000',
+                    highlights: ['Delicate lace detailing', 'Satin finish', 'Floor-length silhouette', 'Custom sizing available'],
                     isFeatured: true
                 },
                 {
-                    id: 'crypto',
-                    category: 'Mobile App',
-                    title: 'Defi Crypto Wallet',
-                    description: 'A non-custodial wallet for the next generation of crypto users.',
-                    image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Multi-chain support (ETH, SOL, BTC)', 'NFT Gallery view', 'One-tap staking', 'Social recovery backup'],
+                    id: 'sovereign-tweed-jacket',
+                    category: 'Outerwear',
+                    title: 'Sovereign Tweed Jacket',
+                    description: 'A timeless classic with a modern twist, perfect for the refined gentleman.',
+                    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=1000',
+                    highlights: ['Authentic Harris Tweed', 'Modern slim cut', 'Reinforced stitching', 'Elegant horn buttons'],
                     isFeatured: true
                 },
                 {
-                    id: 'health',
-                    category: 'Mobile App',
-                    title: 'Vitality Health Tracker',
-                    description: 'A holistic health application integrating wearable data with nutritional tracking.',
-                    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Apple HealthKit Integration', 'Sleep pattern analysis', 'Calorie scanning via Camera', 'Social challenges'],
-                    isFeatured: false
-                },
-                {
-                    id: 'smarthome',
-                    category: 'IoT Product',
-                    title: 'Nest Control Hub',
-                    description: 'Centralized control system for smart home devices.',
-                    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Drag-and-drop routine builder', 'Energy usage heatmaps', 'Voice assistant config', 'Guest access management'],
-                    isFeatured: false
-                },
-                {
-                    id: 'travel',
-                    category: 'Web Platform',
-                    title: 'Wanderlust Booking',
-                    description: 'An immersive travel booking experience.',
-                    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=1000',
-                    highlights: ['Video destination guides', 'Split-payment for groups', 'AI Itinerary generator', 'Offline map support'],
+                    id: 'noble-linen-shirt',
+                    category: 'Casual Wear',
+                    title: 'Noble Linen Shirt',
+                    description: 'Breathable and sophisticated linen shirt for effortless style.',
+                    image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&q=80&w=1000',
+                    highlights: ['100% Organic Linen', 'Mother of Pearl buttons', 'Pre-washed for softness', 'Cool and breathable'],
                     isFeatured: false
                 }
             ];
-            await Project.insertMany(seedData);
-            console.log('Database seeded with projects');
+            await Product.insertMany(seedData);
+            console.log('Database seeded with fashion products');
         }
     } catch (err) {
         console.error('Error seeding database', err);
@@ -124,4 +106,3 @@ const server = app.listen(PORT, () => {
 });
 
 module.exports = app;
-

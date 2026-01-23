@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const projectSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     category: { type: String, required: true },
     title: { type: String, required: true },
@@ -10,4 +10,4 @@ const projectSchema = new mongoose.Schema({
     isFeatured: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Product', productSchema);
