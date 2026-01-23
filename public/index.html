@@ -4,411 +4,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wired Hustle | UI/UX Design</title>
-    <link rel="icon" type="image/x-icon"
-        href="file:///C:/Users/hp/.gemini/antigravity/brain/8fc89929-92c4-4f02-bf55-4bece4d8e1df/wired_hustle_favicon_circle_1768683886751.png">
+    <title>Kingswilly Fashion | Material 3 Expressive Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --md-sys-color-primary: #6750A4;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #EADDFF;
+            --md-sys-color-on-primary-container: #21005D;
+            --md-sys-color-secondary: #625B71;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-surface: #FEF7FF;
+            --md-sys-color-on-surface: #1D1B20;
+            --md-sys-color-surface-variant: #E7E0EB;
+            --md-sys-color-on-surface-variant: #49454F;
+            --md-sys-color-outline: #79747E;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
         }
 
-        /* Glassmorphism Utilities */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        h1, h2, h3, .syne {
+            font-family: 'Syne', sans-serif;
         }
 
-        .glass-card {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        .m3-card {
+            background-color: var(--md-sys-color-surface-variant);
+            border-radius: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .text-stroke {
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-            color: transparent;
+        .m3-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .hero-text-gradient {
-            background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.5) 100%);
+        .m3-button {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .m3-button:hover {
+            background-color: #7d68b8;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .m3-fab {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+        }
+
+        .m3-fab:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+        }
+
+        .expressive-hero {
+            border-radius: 0 0 80px 80px;
+            background: linear-gradient(135deg, #6750A4 0%, #31111D 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #D0BCFF, #FFFFFF);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Timeline line */
-        .timeline-line::before {
-            content: '';
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .horizontal-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Material 3 Expressive Shape */
+        .shape-blob {
+            background: var(--md-sys-color-primary-container);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        @media (min-width: 768px) {
-            .timeline-line::before {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Modal Utilities */
-        .modal-overlay {
-            background: rgba(0, 0, 0, 0.85);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
+            z-index: -1;
         }
     </style>
 </head>
 
-<body class="bg-[#0a0a0a] text-white overflow-x-hidden">
+<body class="overflow-x-hidden">
 
     <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 px-4 py-4 md:px-6 md:py-6 transition-nav">
-        <div
-            class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-6 py-3 md:px-8 md:py-4 relative bg-[#0a0a0a]/80 backdrop-blur-md">
-            <div class="text-xl font-bold tracking-tighter uppercase">The Wired <span
-                    class="text-blue-500">Hustle</span></div>
+    <nav class="fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-xl rounded-full px-8 py-4 shadow-sm">
+            <div class="text-2xl font-black tracking-tighter syne text-[#6750A4]">KINGSWILLY</div>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide text-gray-300">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#expertise" class="hover:text-white transition">Expertise</a>
-                <a href="#contact" class="hover:text-white transition">Contacts</a>
+            <div class="hidden md:flex space-x-12 font-medium">
+                <a href="#collections" class="hover:text-[#6750A4] transition">Collections</a>
+                <a href="#featured" class="hover:text-[#6750A4] transition">Featured</a>
+                <a href="#about" class="hover:text-[#6750A4] transition">Story</a>
             </div>
-            <a href="#contact"
-                class="hidden md:block bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition">Book
-                Call</a>
 
-            <!-- Mobile Hamburger -->
-            <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu"
-            class="hidden absolute top-24 left-6 right-6 glass rounded-2xl p-6 flex flex-col space-y-4 md:hidden z-40 animate-[fadeIn_0.3s_ease-out]">
-            <a href="#about" onclick="toggleMobileMenu()"
-                class="text-lg font-medium text-gray-300 hover:text-white">About</a>
-            <a href="#expertise" onclick="toggleMobileMenu()"
-                class="text-lg font-medium text-gray-300 hover:text-white">Expertise</a>
-            <a href="#contact" onclick="toggleMobileMenu()"
-                class="text-lg font-medium text-gray-300 hover:text-white">Contacts</a>
-            <a href="#contact" onclick="toggleMobileMenu()"
-                class="bg-white text-black text-center py-3 rounded-xl font-bold">Book Call</a>
+            <div class="flex items-center space-x-4">
+                <button class="p-2 hover:bg-gray-100 rounded-full transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <button class="relative p-2 hover:bg-gray-100 rounded-full transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute top-0 right-0 bg-[#6750A4] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative w-full overflow-hidden">
-        <!-- Mobile: Stacked Layout -->
-        <div class="md:hidden">
-            <!-- Hero Text Section -->
-            <div class="relative min-h-[40vh] flex flex-col justify-center items-center">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=3000&auto=format&fit=crop"
-                        alt="Abstract Background" class="w-full h-full object-cover opacity-60">
-                    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]"></div>
-                </div>
-
-                <div class="relative z-10 text-center px-4 pt-20">
-                    <h2 class="text-blue-400 tracking-[0.2em] text-sm mb-2 uppercase font-bold">UI/UX Design Studio</h2>
-                    <h1 class="text-5xl font-black tracking-tighter uppercase">
-                        <span class="hero-text-gradient">Wired</span><br>
-                        <span class="text-stroke">Hustle</span>
-                    </h1>
+    <section class="relative min-h-screen expressive-hero flex flex-col justify-center px-6 pt-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-white space-y-8">
+                <span class="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-md text-sm font-bold tracking-widest uppercase">New Season 2024</span>
+                <h1 class="text-7xl md:text-9xl font-black leading-none syne">UNLEASH <br> <span class="text-gradient">STYLE.</span></h1>
+                <p class="text-xl text-gray-200 max-w-md">Discover the intersection of high fashion and expressive design. Tailored for the bold, the unique, and the kings.</p>
+                <div class="flex space-x-4">
+                    <button class="m3-button text-lg px-10 py-5">Shop Now</button>
+                    <button class="px-8 py-4 border-2 border-white/30 rounded-[20px] font-bold hover:bg-white/10 transition">Lookbook</button>
                 </div>
             </div>
-
-            <!-- Cards Section (Below Hero) -->
-            <div class="bg-[#0a0a0a] py-8 px-6">
-                <div id="projectsGridMobile" class="max-w-7xl mx-auto grid grid-cols-2 gap-3"></div>
-            </div>
-        </div>
-
-        <!-- Desktop: Overlay Layout -->
-        <div class="hidden md:flex relative w-full h-screen flex-col justify-center items-center">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=3000&auto=format&fit=crop"
-                    alt="Abstract Background" class="w-full h-full object-cover opacity-60">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]"></div>
-            </div>
-
-            <div class="relative z-10 text-center px-4 mt-[-100px]">
-                <h2 class="text-blue-400 tracking-[0.2em] text-base mb-4 uppercase font-bold">UI/UX Design Studio</h2>
-                <h1 class="text-9xl font-black tracking-tighter uppercase mb-6">
-                    <span class="hero-text-gradient">Wired</span><br>
-                    <span class="text-stroke">Hustle</span>
-                </h1>
-            </div>
-
-            <div class="absolute bottom-10 left-0 w-full z-20 px-6">
-                <div id="projectsGrid" class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="relative">
+                <div class="w-full aspect-[4/5] rounded-[40px] overflow-hidden rotate-3 hover:rotate-0 transition duration-700 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Fashion Hero" class="w-full h-full object-cover">
                 </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section (Reference: About The Tour) -->
-    <section id="about" class="relative py-32 px-6 max-w-7xl mx-auto">
-        <div class="flex items-center justify-center mb-20">
-            <div class="h-[1px] bg-white/20 w-1/4"></div>
-            <h2 class="text-3xl md:text-4xl font-bold uppercase mx-8 tracking-wider">About The Creator</h2>
-            <div class="h-[1px] bg-white/20 w-1/4"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <!-- Text Content -->
-            <div>
-                <p class="text-xl md:text-2xl text-gray-300 leading-relaxed font-light mb-8">
-                    We've planned a simple and convenient workflow for your project. <span class="text-blue-400">I am a
-                        UI/UX designer</span> dedicated to transforming complex problems into intuitive, satisfying
-                    digital experiences.
-                </p>
-                <p class="text-gray-400 leading-relaxed">
-                    No need to worry about routes, schedules, or finding places — everything is already organized. We'll
-                    show you where to go, what to see, and where to eat, so you can simply <span
-                        class="text-white font-semibold">enjoy the journey</span>.
-                </p>
-            </div>
-
-            <!-- Timeline Visual (Reference: The map/line thing) -->
-            <div class="relative h-auto md:h-[400px] timeline-line flex flex-col md:block">
-                <!-- Point 1 -->
-                <div
-                    class="relative w-full pl-12 text-left mb-10 md:absolute md:mb-0 md:top-10 md:left-[20%] md:w-40 md:text-right md:pl-0 md:pr-6">
-                    <span class="block text-2xl font-bold">Research</span>
-                    <span class="text-sm text-gray-500">Phase 1</span>
-                    <!-- Dot -->
-                    <div
-                        class="absolute top-2 left-[15px] w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)] md:left-auto md:right-[-5px]">
-                    </div>
-                    <!-- Image hint -->
-                    <div
-                        class="mt-2 h-20 bg-gray-800 rounded-lg opacity-50 overflow-hidden border border-white/10 w-full md:w-auto">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=300"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Point 2 -->
-                <div
-                    class="relative w-full pl-12 text-left mb-10 md:absolute md:mb-0 md:top-1/2 md:left-[50%] md:translate-y-[-50%] md:w-40 md:pl-6">
-                    <!-- Dot -->
-                    <div class="absolute top-2 left-[15px] w-3 h-3 bg-white rounded-full md:left-[-6px]"></div>
-                    <span class="block text-2xl font-bold">Design</span>
-                    <span class="text-sm text-gray-500">Phase 2</span>
-                    <div
-                        class="mt-2 h-20 bg-gray-800 rounded-lg opacity-50 overflow-hidden border border-white/10 w-full md:w-auto">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=300"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Point 3 -->
-                <div
-                    class="relative w-full pl-12 text-left md:absolute md:bottom-10 md:left-[20%] md:w-40 md:text-right md:pl-0 md:pr-6">
-                    <!-- Dot -->
-                    <div class="absolute top-2 left-[15px] w-3 h-3 bg-white rounded-full md:left-auto md:right-[-5px]">
-                    </div>
-                    <span class="block text-2xl font-bold">Build</span>
-                    <span class="text-sm text-gray-500">Phase 3</span>
-                    <div
-                        class="mt-2 h-20 bg-gray-800 rounded-lg opacity-50 overflow-hidden border border-white/10 w-full md:w-auto">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=300"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
+                <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-[#D0BCFF] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
             </div>
         </div>
     </section>
 
-    <!-- Expertise Section (Reference: What's Included) -->
-    <section id="expertise" class="py-24 px-6 bg-[#0f0f0f]">
+    <!-- Categories Section -->
+    <section id="collections" class="py-24 px-6 overflow-hidden">
         <div class="max-w-7xl mx-auto">
-            <div class="flex items-center mb-16">
-                <h2 class="text-3xl font-bold uppercase tracking-wider mr-6">My Expertise</h2>
-                <div class="h-[1px] bg-white/20 flex-grow"></div>
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="text-5xl font-extrabold syne">COLLECTIONS</h2>
+                <a href="#" class="text-[#6750A4] font-bold border-b-2 border-[#6750A4]">View All</a>
             </div>
 
-            <div class="grid md:grid-cols-4 gap-6">
-                <!-- UI Design -->
-                <div
-                    class="glass-card p-8 rounded-2xl hover:bg-white/5 transition duration-300 border-t-2 border-t-blue-500">
-                    <div class="text-blue-500 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
+            <div class="flex space-x-6 overflow-x-auto horizontal-scroll pb-10">
+                <div class="flex-shrink-0 w-80 group cursor-pointer">
+                    <div class="h-96 rounded-[32px] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold">Formal Wear</h3>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">UI Design</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Creating visually stunning and responsive
-                        interfaces that align with your brand identity.</p>
                 </div>
-
-                <!-- UX Research -->
-                <div
-                    class="glass-card p-8 rounded-2xl hover:bg-white/5 transition duration-300 border-t-2 border-t-purple-500">
-                    <div class="text-purple-500 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
+                <div class="flex-shrink-0 w-80 group cursor-pointer">
+                    <div class="h-96 rounded-[32px] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold">Streetwear</h3>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">UX Research</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Deep diving into user behavior to ensure every
-                        interaction is meaningful and frictionless.</p>
                 </div>
-
-                <!-- Prototyping -->
-                <div
-                    class="glass-card p-8 rounded-2xl hover:bg-white/5 transition duration-300 border-t-2 border-t-emerald-500">
-                    <div class="text-emerald-500 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
+                <div class="flex-shrink-0 w-80 group cursor-pointer">
+                    <div class="h-96 rounded-[32px] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold">Accessories</h3>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">Prototyping</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Bringing ideas to life quickly with interactive
-                        prototypes for testing and validation.</p>
                 </div>
-
-                <!-- Development (New added to fill grid like reference usually has 4) -->
-                <div
-                    class="glass-card p-8 rounded-2xl hover:bg-white/5 transition duration-300 border-t-2 border-t-pink-500">
-                    <div class="text-pink-500 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
+                <div class="flex-shrink-0 w-80 group cursor-pointer">
+                    <div class="h-96 rounded-[32px] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold">New Arrivals</h3>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">Development</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Clean, semantic code implementation using modern
-                        frameworks like React and Tailwind.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer / Contact (Reference: Sakura image bottom) -->
-    <footer id="contact" class="relative py-32 mt-12">
-        <!-- Footer BG -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=2070"
-                alt="Footer Background" class="w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent"></div>
+    <!-- Featured Products Grid -->
+    <section id="featured" class="py-24 px-6 bg-[#F3EDF7]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-extrabold syne mb-16 text-center">FEATURED PIECES</h2>
+
+            <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be loaded here -->
+            </div>
         </div>
+    </section>
 
-        <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <div class="glass-card rounded-3xl p-10 md:p-14 overflow-hidden relative">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 class="text-3xl font-bold mb-4">Want to join us,<br>but still have questions?</h2>
-                        <p class="text-gray-400 mb-8">Leave a request and we will contact you to discuss your project.
-                        </p>
-
-                        <div class="space-y-2 text-sm text-gray-500">
-                            <p>thewiredhustle@gmail.com</p>
-                            <p>&copy; 2024 The Wired Hustle</p>
-                        </div>
+    <!-- Story / About Section -->
+    <section id="about" class="py-32 px-6 bg-white relative overflow-hidden">
+        <div class="shape-blob w-96 h-96 -top-20 -right-20 opacity-30"></div>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] w-full aspect-[3/4] object-cover">
+                        <img src="https://images.unsplash.com/photo-1550246140-5119ae4790b8?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] w-full aspect-square object-cover">
                     </div>
-
-                    <form id="contactForm" class="space-y-4" onsubmit="sendEmail(event)">
-                        <div>
-                            <label class="block text-xs uppercase text-gray-500 mb-1">your name</label>
-                            <input type="text" id="userName" required
-                                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 text-white"
-                                placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase text-gray-500 mb-1">Email Address</label>
-                            <input type="email" id="userEmail" required
-                                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 text-white"
-                                placeholder="john@example.com">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase text-gray-500 mb-1">Comment</label>
-                            <textarea rows="3" id="userMessage" required
-                                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 text-white"
-                                placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition">Send
-                            via Email</button>
-                    </form>
+                    <div class="space-y-4 pt-12">
+                        <img src="https://images.unsplash.com/photo-1552664688-cf412dd27db2?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] w-full aspect-square object-cover">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=400" class="rounded-[40px] w-full aspect-[3/4] object-cover">
+                    </div>
                 </div>
             </div>
+            <div class="space-y-8">
+                <h2 class="text-6xl font-black syne leading-tight">THE CRAFT BEHIND THE NAME</h2>
+                <p class="text-xl text-gray-600 leading-relaxed">Kingswilly Fashion isn't just a label; it's an expression of royalty and individuality. Every piece is curated to make you feel like the king of your own story.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-[#EADDFF] flex items-center justify-center text-[#6750A4]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-lg">Sustainable Materials</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-[#EADDFF] flex items-center justify-center text-[#6750A4]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <span class="font-bold text-lg">Ethical Craftsmanship</span>
+                    </div>
+                </div>
+                <button class="m3-button">Read Our Full Story</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1D1B20] text-white py-24 px-6 rounded-t-[60px]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-2 space-y-8">
+                <h2 class="text-4xl font-black syne">KINGSWILLY</h2>
+                <p class="text-gray-400 max-w-sm">Elevating your wardrobe with pieces that speak volumes. Join the royalty today.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-[#D0BCFF] transition">Instagram</a>
+                    <a href="#" class="hover:text-[#D0BCFF] transition">Twitter</a>
+                    <a href="#" class="hover:text-[#D0BCFF] transition">TikTok</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-xl mb-6">Quick Links</h3>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Shop All</a></li>
+                    <li><a href="#" class="hover:text-white transition">Shipping Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Returns</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-xl mb-6">Newsletter</h3>
+                <p class="text-gray-400 mb-4">Get updates on new drops.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Email" class="bg-white/10 border-none rounded-l-xl px-4 py-2 w-full focus:ring-2 ring-[#6750A4]">
+                    <button class="bg-[#6750A4] px-4 py-2 rounded-r-xl font-bold">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/10 text-center text-gray-500">
+            <p>&copy; 2024 Kingswilly Fashion. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Project Modal -->
-    <div id="projectModal"
-        class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 modal-overlay opacity-0 transition-opacity duration-300"
-        role="dialog" aria-modal="true">
-        <div class="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl p-0 relative transform scale-95 transition-transform duration-300"
-            id="modalContent">
-
-            <!-- Close Button -->
-            <button onclick="closeModal()"
-                class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition backdrop-blur-sm border border-white/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+    <!-- Product Modal (Expressive) -->
+    <div id="productModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-5xl rounded-[40px] overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col md:flex-row max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-10 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
 
-            <!-- Modal Body -->
-            <div class="grid md:grid-cols-2">
-                <!-- Image Side -->
-                <div class="h-64 md:h-auto min-h-[300px] bg-gray-800 relative group">
-                    <img id="modalImage" src="" alt="Project Preview"
-                        class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent md:hidden">
-                    </div>
+            <div class="md:w-1/2 h-80 md:h-auto">
+                <img id="modalImage" src="" class="w-full h-full object-cover">
+            </div>
+
+            <div class="md:w-1/2 p-8 md:p-12 overflow-y-auto">
+                <span id="modalCategory" class="text-[#6750A4] font-bold uppercase tracking-widest text-sm mb-4 block">Category</span>
+                <h2 id="modalTitle" class="text-4xl md:text-5xl font-black syne mb-6">Product Title</h2>
+                <p id="modalPrice" class="text-3xl font-light mb-8">$0.00</p>
+                <p id="modalDescription" class="text-gray-600 leading-relaxed mb-10 text-lg">Description goes here.</p>
+
+                <div class="space-y-6 mb-12">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-gray-400">Highlights</h4>
+                    <ul id="modalHighlights" class="grid grid-cols-2 gap-4">
+                        <!-- Populated by JS -->
+                    </ul>
                 </div>
 
-                <!-- Content Side -->
-                <div class="p-6 md:p-12 flex flex-col justify-center bg-[#0a0a0a]/95">
-                    <span id="modalCategory"
-                        class="text-blue-500 font-bold uppercase tracking-wider text-sm mb-2">Category</span>
-                    <h3 id="modalTitle" class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Project Title</h3>
-
-                    <p id="modalDescription" class="text-gray-400 leading-relaxed mb-8">
-                        Description goes here.
-                    </p>
-
-                    <div class="space-y-4 mb-8">
-                        <h4 class="text-sm font-bold uppercase text-gray-500">Project Highlights</h4>
-                        <ul class="space-y-3 text-gray-300" id="modalHighlights">
-                            <!-- JS will populate -->
-                        </ul>
-                    </div>
-
-                    <button
-                        class="bg-white text-black font-bold py-3 px-8 rounded-full self-start hover:bg-gray-200 transition flex items-center gap-2">
-                        <span>View Live Prototype</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <div class="flex space-x-4">
+                    <button class="m3-button flex-grow py-5 text-xl">Add to Bag</button>
+                    <button class="m3-fab">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                     </button>
                 </div>
@@ -418,110 +330,74 @@
 
     <script>
         const API_BASE_URL = '/api';
-        let projects = {};
-        let cardData = [];
+        let products = [];
 
-        async function fetchProjects() {
+        async function fetchProducts() {
             try {
-                const response = await fetch(`${API_BASE_URL}/projects`);
-                const data = await response.json();
-
-                // Transform data into the expected structures
-                projects = data.reduce((acc, project) => {
-                    acc[project.id] = project;
-                    return acc;
-                }, {});
-
-                cardData = data.filter(p => p.isFeatured).map(p => ({
-                    id: p.id,
-                    cat: p.category,
-                    title: p.title.replace(' ', '<br>'),
-                    img: p.image
-                }));
-
-                renderGrids();
+                const response = await fetch(`${API_BASE_URL}/products`);
+                products = await response.json();
+                renderProducts();
             } catch (err) {
-                console.error('Error fetching projects:', err);
-                // Fallback or error message could go here
+                console.error('Error fetching products:', err);
             }
         }
 
-        function renderGrids() {
-            const mobileGrid = document.getElementById('projectsGridMobile');
-            const desktopGrid = document.getElementById('projectsGrid');
-
-            const cardsHTML = cardData.map(createCard).join('') + viewAllCard;
-
-            if (mobileGrid) mobileGrid.innerHTML = cardsHTML;
-            if (desktopGrid) desktopGrid.innerHTML = cardsHTML;
-        }
-
-        function createCard(card) {
-            return `
-                <div onclick="openProject('${card.id}')"
-                    class="glass-card p-4 rounded-xl flex flex-col justify-end aspect-[3/4] hover:bg-white/10 transition cursor-pointer group relative overflow-hidden">
-                    <img src="${card.img}"
-                        class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-500 group-hover:scale-110 group-hover:opacity-80">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                    <div class="relative z-10">
-                        <span class="text-xs text-blue-400 mb-1">${card.cat}</span>
-                        <span class="font-bold leading-tight block group-hover:translate-x-1 transition">${card.title}</span>
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => `
+                <div onclick="openProduct('${product.id}')" class="m3-card group cursor-pointer overflow-hidden relative">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
                     </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-gray-500">${product.category}</span>
+                            <span class="font-bold text-[#6750A4]">$${product.price}</span>
+                        </div>
+                        <h3 class="text-2xl font-bold syne group-hover:text-[#6750A4] transition">${product.title}</h3>
+                    </div>
+                    <button class="absolute bottom-8 right-8 m3-fab opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
                 </div>
-            `;
+            `).join('');
         }
 
-        const viewAllCard = `
-            <div onclick="loadMoreProjects(this)" id="viewAllBtn"
-                class="glass-card p-4 rounded-xl flex flex-col justify-center items-center aspect-[3/4] bg-white/10 hover:bg-white/20 transition cursor-pointer text-center relative overflow-hidden">
-                <span id="viewAllIcon" class="text-3xl mb-2 transition-transform duration-300">→</span>
-                <span id="viewAllText" class="font-bold">View All</span>
-            </div>
-        `;
+        function openProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
 
-        // Populate grids on page load
-        document.addEventListener('DOMContentLoaded', fetchProjects);
+            document.getElementById('modalCategory').textContent = product.category;
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalPrice').textContent = `$${product.price}`;
+            document.getElementById('modalDescription').textContent = product.description;
+            document.getElementById('modalImage').src = product.image;
 
-        function openProject(id) {
-            const project = projects[id];
-            if (!project) return;
+            const highlightsList = document.getElementById('modalHighlights');
+            highlightsList.innerHTML = product.highlights.map(h => `
+                <li class="flex items-center space-x-3 text-sm text-gray-600">
+                    <span class="w-1.5 h-1.5 bg-[#6750A4] rounded-full"></span>
+                    <span>${h}</span>
+                </li>
+            `).join('');
 
-            document.getElementById('modalCategory').textContent = project.category;
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalDescription').textContent = project.description;
-            // Add fade effect to image swap
-            const img = document.getElementById('modalImage');
-            img.style.opacity = '0';
-            setTimeout(() => {
-                img.src = project.image;
-                img.onload = () => { img.style.opacity = '1'; };
-            }, 200);
-
-            const list = document.getElementById('modalHighlights');
-            list.innerHTML = project.highlights.map(h => `<li class="flex items-start"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span><span class="leading-relaxed">${h}</span></li>`).join('');
-
-            const modal = document.getElementById('projectModal');
-            const content = document.getElementById('modalContent');
-
+            const modal = document.getElementById('productModal');
             modal.classList.remove('hidden');
-            // Small delay for transition
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
-                content.classList.remove('scale-95');
-                content.classList.add('scale-100');
+                modal.querySelector('div').classList.remove('scale-95');
+                modal.querySelector('div').classList.add('scale-100');
             }, 10);
-
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            const modal = document.getElementById('projectModal');
-            const content = document.getElementById('modalContent');
-
+            const modal = document.getElementById('productModal');
             modal.classList.add('opacity-0');
-            content.classList.remove('scale-100');
-            content.classList.add('scale-95');
-
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = '';
@@ -529,133 +405,11 @@
         }
 
         // Close on clicking overlay
-        document.getElementById('projectModal').addEventListener('click', function (e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        document.getElementById('productModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
         });
 
-        // Escape key to close
-        document.addEventListener('keydown', function (event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
-
-        async function loadMoreProjects(btn) {
-            const icon = btn.querySelector('#viewAllIcon');
-            const text = btn.querySelector('#viewAllText');
-            const isExpanded = btn.dataset.expanded === "true";
-
-            if (isExpanded) {
-                // View Less Logic
-                const generatedCards = document.querySelectorAll('.generated-project');
-                generatedCards.forEach(card => card.remove());
-
-                const allButtons = document.querySelectorAll('#viewAllBtn');
-                allButtons.forEach(button => {
-                    const bIcon = button.querySelector('#viewAllIcon');
-                    const bText = button.querySelector('#viewAllText');
-                    if (bText) bText.innerHTML = 'View All';
-                    if (bIcon) {
-                        bIcon.innerHTML = '→';
-                        bIcon.style.transform = 'rotate(0deg)';
-                    }
-                    button.dataset.expanded = "false";
-                });
-                return;
-            }
-
-            // View All Logic (Loading)
-            icon.style.display = 'none';
-            text.innerHTML = 'Expanding...';
-            btn.classList.add('animate-pulse');
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/projects`);
-                const allData = await response.json();
-                const newCards = allData.filter(p => !p.isFeatured);
-
-                const mobileGrid = document.getElementById('projectsGridMobile');
-                const desktopGrid = document.getElementById('projectsGrid');
-
-                newCards.forEach(card => {
-                    const div = document.createElement('div');
-                    div.className = 'generated-project glass-card p-4 rounded-xl flex flex-col justify-end aspect-[3/4] hover:bg-white/10 transition cursor-pointer group animate-[fadeIn_0.5s_ease-out] relative overflow-hidden';
-                    div.onclick = () => openProject(card.id);
-                    div.innerHTML = `
-                        <img src="${card.image}" class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-500 group-hover:scale-110 group-hover:opacity-80">
-                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                         <div class="relative z-10">
-                            <span class="text-xs text-blue-400 mb-1">${card.category}</span>
-                            <span class="font-bold leading-tight block group-hover:translate-x-1 transition">${card.title.replace(' ', '<br>')}</span>
-                         </div>
-                    `;
-                    if (mobileGrid) {
-                        const mobileBtn = mobileGrid.querySelector('#viewAllBtn');
-                        if (mobileBtn) mobileGrid.insertBefore(div.cloneNode(true), mobileBtn);
-                    }
-                    if (desktopGrid) {
-                        const desktopBtn = desktopGrid.querySelector('#viewAllBtn');
-                        if (desktopBtn) desktopGrid.insertBefore(div, desktopBtn);
-                    }
-                });
-
-                const allButtons = document.querySelectorAll('#viewAllBtn');
-                allButtons.forEach(button => {
-                    const bIcon = button.querySelector('#viewAllIcon');
-                    const bText = button.querySelector('#viewAllText');
-                    button.classList.remove('animate-pulse');
-                    if (bIcon) {
-                        bIcon.style.display = 'block';
-                        bIcon.innerHTML = '↑';
-                    }
-                    if (bText) bText.innerHTML = 'View Less';
-                    button.dataset.expanded = "true";
-                });
-            } catch (err) {
-                console.error('Error loading more projects:', err);
-                text.innerHTML = 'Error';
-                btn.classList.remove('animate-pulse');
-            }
-        }
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        async function sendEmail(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('userName').value;
-            const email = document.getElementById('userEmail').value;
-            const message = document.getElementById('userMessage').value;
-            const submitBtn = event.target.querySelector('button');
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Sending...';
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/contact`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, message })
-                });
-
-                if (response.ok) {
-                    alert('Message sent successfully!');
-                    event.target.reset();
-                } else {
-                    throw new Error('Failed to send message');
-                }
-            } catch (err) {
-                console.error('Error sending message:', err);
-                alert('Failed to send message. Please try again later.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Send via Email';
-            }
-        }
+        document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
 </body>
 
